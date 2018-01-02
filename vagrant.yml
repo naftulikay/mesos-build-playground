@@ -1,0 +1,43 @@
+---
+- name: build
+  hosts: all
+  become: true
+  roles: [naftulikay.vagrant-base]
+  tasks:
+    - name: install subversion
+      yum_repository:
+        name: a
+        description: b
+        baseurl: http://opensource.wandisco.com/centos/7/svn-1.9/RPMS/$basearch/
+        enabled: true
+        gpgcheck: true
+        gpgkey: http://opensource.wandisco.com/RPM-GPG-KEY-WANdisco
+
+    - name: install packages
+      package: name={{ item }} state=present
+      with_items:
+        # build deps
+        - autoconf
+        - automake
+        - gcc
+        - gcc-c++
+        - libtool
+        - m4
+        - make
+        - patch
+        # etc.
+        - maven
+        - python-devel
+        - python-six
+        - python-virtualenv
+        - java-1.8.0-openjdk-devel
+        - zlib-devel
+        - libcurl-devel
+        - openssl-devel
+        - subversion
+        - cyrus-sasl-devel
+        - cyrus-sasl-md5
+        - apr-devel
+        - subversion-devel
+        - apr-util-devel
+        - systemd

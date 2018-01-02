@@ -1,0 +1,5 @@
+.galaxy-roles
+.vagrant
+
+/mesos-*.tar.gz
+/mesos-*/
